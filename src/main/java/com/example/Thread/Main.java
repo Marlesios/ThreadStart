@@ -1,9 +1,4 @@
-package com.example.demo1;
-
-import java.util.*;
-import java.util.concurrent.ExecutorService;
-import java.util.logging.Logger;
-import java.util.concurrent.*;
+package com.example.Thread;
 
 public class Main {
 
