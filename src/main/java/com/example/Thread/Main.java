@@ -1,23 +1,33 @@
 package com.example.Thread;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.FutureTask;
+
 public class Main {
 
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, ExecutionException {
 
-        ThreadGroup mainGroup = new ThreadGroup("mainGroup");
-        Thread thread1 = new Thread(mainGroup,new MyThread(),"номер 1");
-        Thread thread2 = new Thread(mainGroup, new MyThread(),"тот самый второй");
-        Thread thread3 = new Thread(mainGroup, new MyThread(),"под номером 3");
-        Thread thread4 = new Thread(mainGroup, new MyThread(),"под номером 4");
+        ExecutorService executorService = Executors.newFixedThreadPool(4);
+        List<MyCallable> myCallables = new ArrayList<>();
 
-        thread1.start();
-        thread2.start();
-        thread3.start();
-        thread4.start();
+        MyCallable myCallable1 = new MyCallable("first");
+        MyCallable myCallable2 = new MyCallable("second");
+        MyCallable myCallable3 = new MyCallable("third");
+        MyCallable myCallable4 = new MyCallable("fourth");
 
-        Thread.sleep(30_000);
-        mainGroup.interrupt();
+        myCallables.add(myCallable1);
+        myCallables.add(myCallable2);
+        myCallables.add(myCallable3);
+        myCallables.add(myCallable4);
+
+        Integer result = executorService.invokeAny(myCallables);
+        System.out.println("the result of call is equal to " + result);
+        executorService.shutdown();
 
 
     }
