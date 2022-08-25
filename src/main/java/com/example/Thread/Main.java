@@ -23,7 +23,7 @@ public class Main {
         myCallables.add(myCallable4);
 
         Integer result = executorService.invokeAny(myCallables);
-        System.out.println("the result of call is equal to " + result);
+        System.out.println("количество вызовов равна " + result);
         executorService.shutdown();
 
 
