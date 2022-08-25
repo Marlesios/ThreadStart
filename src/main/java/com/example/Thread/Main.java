@@ -2,15 +2,12 @@ package com.example.Thread;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.FutureTask;
+import java.util.concurrent.*;
 
 public class Main {
 
 
-    public static void main(String[] args) throws InterruptedException, ExecutionException {
+    public static void main(String[] args) throws InterruptedException, ExecutionException, TimeoutException {
 
         ExecutorService executorService = Executors.newFixedThreadPool(4);
         List<MyCallable> myCallables = new ArrayList<>();
